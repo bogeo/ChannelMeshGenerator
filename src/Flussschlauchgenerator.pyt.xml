@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<metadata xml:lang="de"><Esri><CreaDate>20170703</CreaDate><CreaTime>14253700</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><ModDate>20170820</ModDate><ModTime>011613</ModTime><scaleRange><minScale>150000000</minScale><maxScale>5000</maxScale></scaleRange><ArcGISProfile>ItemDescription</ArcGISProfile></Esri><toolbox name="Flussschlauchgenerator" alias="cmg"><arcToolboxHelpPath>d:\program files (x86)\arcgis\desktop10.4\Help\gp</arcToolboxHelpPath><toolsets/></toolbox><dataIdInfo><idCitation><resTitle>Flussschlauchgenerator</resTitle></idCitation><idPurp>Erstellt ein Berechnungsnetz mit Rechtecken und Dreiecken aus Querprofilen, WLG/Uferlinien und DGM-Daten. Dazu werden zuerst die Daten auf den Bearbeitungsbereich zugeschnitten und angepasst. Dann wird das DGM-W erstellt. Dieses wird verwendet, um die Höhenwerte auf das Berechnungsnetz zu interpolieren. Die einzelnen Beschreibungen sind den Werkzeugen zu entnehmen. Die Reihenfolge in der die Tools ausgeführt werden müssen:
+
+1. Verbinde Querprofile (Datenaufbereitung)
+2. Erstelle Gewässerachse (Datenaufbereitung)
+3. Passe Eingangsdaten an (Datenaufbereitung)
+4. Erstelle Gewässerpolygon (Datenaufbereitung)
+5. Unterteile WLG (Uferlinien) in Abschnitte (Datenaufbereitung)
+6. Erstelle Zwischenprofile (DGM-W)
+7. Erstelle Längsprofile (DGM-W)
+8. Interpoliere Längsprofile (DGM-W)
+9. Erstelle DGM-W (DGM-W)
+10. Erstelle TIN (Export)
+11. Erstelle Stützpunkte (Berechnungsnetz)
+12. Erstelle Netzelemente (Berechnungsnetz)
+13. Prüfe Netzelemente (Berechnungsnetz)
+14. Exportiere Features (Export)
+
+</idPurp><searchKeys><keyword>ChannelMeshGenerator</keyword><keyword>Flussschlauchgenerator</keyword></searchKeys><resConst><Consts><useLimit>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;UL&gt;&lt;LI&gt;&lt;P&gt;&lt;SPAN&gt;Einige Tools sind nur mit der Lizenz '3D-Analyst' aufrufbar.&lt;/SPAN&gt;&lt;/P&gt;&lt;/LI&gt;&lt;LI&gt;&lt;P&gt;&lt;SPAN&gt;Einige Tools sind nur mit der Lizenz 'ArcGIS Desktop Advanced' aufrufbar.&lt;/SPAN&gt;&lt;/P&gt;&lt;/LI&gt;&lt;/UL&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</useLimit></Consts></resConst><idAbs>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;&lt;SPAN&gt;Erstellt ein Berechnungsnetz mit Rechtecken und Dreiecken aus Querprofilen, WLG/Uferlinien und DGM-Daten&lt;/SPAN&gt;&lt;SPAN&gt;. &lt;/SPAN&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</idAbs></dataIdInfo><distInfo><distributor><distorFormat><formatName>ArcToolbox Toolbox</formatName></distorFormat></distributor></distInfo><mdHrLv><ScopeCd value="005"/></mdHrLv></metadata>

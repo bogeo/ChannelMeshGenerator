@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dtmw.create_cross_lines</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dtmw-module.html">Package&nbsp;dtmw</a> ::
+        Module&nbsp;create_cross_lines
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dtmw.create_cross_lines-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="dtmw.create_cross_lines-module.html">Module dtmw.create_cross_lines</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">Created on 16.07.2017</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">@author: Matthias Hensen</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">Create lines cross to the waters flow direction.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">function: create_cross_lines(</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">    workspace, in_wlb, in_cross_sections, out_wlb_subdivided_name,</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">    keep_names)</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">arcpy</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package configuration=configuration-module.html"><a title="configuration" class="py-name" href="#" onclick="return doclink('link-0', 'configuration', 'link-0');">configuration</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module configuration.configure_logging=configuration.configure_logging-module.html"><a title="configuration.configure_logging" class="py-name" href="#" onclick="return doclink('link-1', 'configure_logging', 'link-1');">configure_logging</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Function configuration.configure_logging.create_logger()=configuration.configure_logging-module.html#create_logger"><a title="configuration.configure_logging.create_logger" class="py-name" href="#" onclick="return doclink('link-2', 'create_logger', 'link-2');">create_logger</a></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name" targets="Package mesh=mesh-module.html"><a title="mesh" class="py-name" href="#" onclick="return doclink('link-3', 'mesh', 'link-3');">mesh</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Module mesh.get_element_count=mesh.get_element_count-module.html"><a title="mesh.get_element_count" class="py-name" href="#" onclick="return doclink('link-4', 'get_element_count', 'link-4');">get_element_count</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">(</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">    <tt id="link-5" class="py-name" targets="Function mesh.get_element_count.get_element_count_fix()=mesh.get_element_count-module.html#get_element_count_fix"><a title="mesh.get_element_count.get_element_count_fix" class="py-name" href="#" onclick="return doclink('link-5', 'get_element_count_fix', 'link-5');">get_element_count_fix</a></tt><tt class="py-op">,</tt> <tt id="link-6" class="py-name" targets="Function mesh.get_element_count.get_element_count_variable()=mesh.get_element_count-module.html#get_element_count_variable"><a title="mesh.get_element_count.get_element_count_variable" class="py-name" href="#" onclick="return doclink('link-6', 'get_element_count_variable', 'link-6');">get_element_count_variable</a></tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name" targets="Function mesh.get_element_count.get_ranges()=mesh.get_element_count-module.html#get_ranges"><a title="mesh.get_element_count.get_ranges" class="py-name" href="#" onclick="return doclink('link-7', 'get_ranges', 'link-7');">get_ranges</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-8" class="py-name" targets="Package other=other-module.html"><a title="other" class="py-name" href="#" onclick="return doclink('link-8', 'other', 'link-8');">other</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Module other.sort_features=other.sort_features-module.html,Function other.sort_features.sort_features()=other.sort_features-module.html#sort_features"><a title="other.sort_features
+other.sort_features.sort_features" class="py-name" href="#" onclick="return doclink('link-9', 'sort_features', 'link-9');">sort_features</a></tt> <tt class="py-keyword">import</tt> <tt id="link-10" class="py-name"><a title="other.sort_features
+other.sort_features.sort_features" class="py-name" href="#" onclick="return doclink('link-10', 'sort_features', 'link-9');">sort_features</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt id="link-11" class="py-name" targets="Variable Flussschlauchgenerator.logger=Flussschlauchgenerator-module.html#logger,Variable dtmw.create_cross_lines.logger=dtmw.create_cross_lines-module.html#logger,Variable dtmw.create_dtmw.logger=dtmw.create_dtmw-module.html#logger,Variable dtmw.create_longitudinal_sections.logger=dtmw.create_longitudinal_sections-module.html#logger,Variable dtmw.interpolate_longitudinal_sections.logger=dtmw.interpolate_longitudinal_sections-module.html#logger,Variable export.create_tin.logger=export.create_tin-module.html#logger,Variable export.export_features.logger=export.export_features-module.html#logger,Variable mesh.check_channel_mesh_elements.logger=mesh.check_channel_mesh_elements-module.html#logger,Variable mesh.create_channel_mesh_elements.logger=mesh.create_channel_mesh_elements-module.html#logger,Variable mesh.create_vertices.logger=mesh.create_vertices-module.html#logger,Variable mesh.get_element_count.logger=mesh.get_element_count-module.html#logger,Variable other.convert_spatial_reference.logger=other.convert_spatial_reference-module.html#logger,Variable other.list_field_names.logger=other.list_field_names-module.html#logger,Variable other.overwrite_output_settings.logger=other.overwrite_output_settings-module.html#logger,Variable other.sort_features.logger=other.sort_features-module.html#logger,Variable preparation.bound_features_to_investigated_area.logger=preparation.bound_features_to_investigated_area-module.html#logger,Variable preparation.connect_cross_sections.logger=preparation.connect_cross_sections-module.html#logger,Variable preparation.create_stream_center_line.logger=preparation.create_stream_center_line-module.html#logger,Variable preparation.create_stream_polygon.logger=preparation.create_stream_polygon-module.html#logger,Variable preparation.flip_line.logger=preparation.flip_line-module.html#logger,Variable preparation.load_points.logger=preparation.load_points-module.html#logger,Variable preparation.subdivide_water_land_border.logger=preparation.subdivide_water_land_border-module.html#logger"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-11', 'logger', 'link-11');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt id="link-12" class="py-name"><a title="configuration.configure_logging.create_logger" class="py-name" href="#" onclick="return doclink('link-12', 'create_logger', 'link-2');">create_logger</a></tt><tt class="py-op">(</tt><tt id="link-13" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-13', 'logger', 'link-11');">logger</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="create_cross_lines"></a><div id="create_cross_lines-def"><a name="L31"></a><tt class="py-lineno"> 31</tt> <a class="py-toggle" href="#" id="create_cross_lines-toggle" onclick="return toggle('create_cross_lines');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dtmw.create_cross_lines-module.html#create_cross_lines">create_cross_lines</a><tt class="py-op">(</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-param">workspace</tt><tt class="py-op">,</tt> <tt class="py-param">in_cross_sections</tt><tt class="py-op">,</tt> <tt class="py-param">in_wlb</tt><tt class="py-op">,</tt> <tt class="py-param">distance</tt><tt class="py-op">,</tt> <tt class="py-param">out_cross_lines_name</tt><tt class="py-op">,</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-param">element_count_method</tt><tt class="py-op">,</tt> <tt class="py-param">remain_percentage</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="create_cross_lines-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="create_cross_lines-expanded"><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-docstring">"""Create lines cross to the waters flow direction.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">    First, the output feature class is created. The fields SECTIONID and</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">    INTERMEDIATEID are added to the output feature class. The water land</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">    border parts are sorted ascending. For each section, the cross lines</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">    are created individual. The length ratio between the two water land </tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">    border parts is computed. The longer water land border part gets </tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">    determined. Then the first section is added to the output as the</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">    sections first cross line. After that, the distance between the </tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">    first two cross lines is computed. If the element count method is </tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">    FIX, the function mesh.get_element_count_fix is used. If the element</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">    count method is VARIABLE, the function mesh.get_element_count</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">    _variable is used. Otherwise the distance is the in parameter </tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">    distance defined value. Then in a while-loop, the further cross </tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">    lines are created and added to the output. At the beginning of each</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">    iteration, it is checked if the remain distance is sufficiently </tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">    (remain percentage to the end of the water land border part) to </tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">    create a further cross line. This cross line is placed at the half </tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">    distance between the last cross line and the cross section at the </tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">    end. Otherwise the while-loop is finished. The distance between </tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">    successive cross lines is adjusted by the length ratio. The start </tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">    and end points for the cross line are set as point object on the </tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">    water land border. The cross line is created as a polyline and added</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">    to a list. Then the distance to the next cross line is computed. </tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">    After creating all cross lines for all sections, the last cross </tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">    section is added as the last cross line. Then the lists are inserted</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">    into the output feature class.</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">    @param workspace(DEWorkspace): </tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        The workspace for results.   </tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">    @param in_cross_sections(DEFeatureClass):</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">        The cross sections feature class. </tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">    @param in_wlb(DEFeatureClass): </tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        The water land border feature class.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">    @param distance(GPDouble): </tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        The medium distance between successive cross lines.           </tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">    @param out_cross_lines_name(GPString): </tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        The name of the feature class with the cross lines.    </tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">    @param element_count_method(GPString): </tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        The method to compute distance with mesh.get_element_count.</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">    @param remain_percentage(GPLong):</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        The percentage value between the current cross line and the </tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        cross section at the end which must be reached at least to</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">        create a further cross line at the half distance.(The half </tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">        distance between the last cross line and the cross section at </tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">        the end).</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring">            </tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring">    @return out_cross_lines(DEFeatureClass): </tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">        The output cross lines feature class.</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">         </tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt id="link-14" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-14', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Create output feature class."</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt>  </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">out_path</tt> <tt class="py-op">=</tt> <tt class="py-name">workspace</tt> <tt class="py-op">+</tt> <tt class="py-string">"/"</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-name">geometry_type</tt> <tt class="py-op">=</tt> <tt class="py-string">"POLYLINE"</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-name">template</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">has_m</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-name">has_z</tt> <tt class="py-op">=</tt> <tt class="py-string">"ENABLED"</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-name">desc</tt> <tt class="py-op">=</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">Describe</tt><tt class="py-op">(</tt><tt class="py-name">in_cross_sections</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-name">spatial_reference</tt> <tt class="py-op">=</tt> <tt class="py-name">desc</tt><tt class="py-op">.</tt><tt class="py-name">spatialReference</tt>    </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">CreateFeatureclass_management</tt><tt class="py-op">(</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-name">out_path</tt><tt class="py-op">,</tt> <tt class="py-name">out_cross_lines_name</tt><tt class="py-op">,</tt> <tt class="py-name">geometry_type</tt><tt class="py-op">,</tt> <tt class="py-name">template</tt><tt class="py-op">,</tt> <tt class="py-name">has_m</tt><tt class="py-op">,</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">            <tt class="py-name">has_z</tt><tt class="py-op">,</tt> <tt class="py-name">spatial_reference</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-op">)</tt>     </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">ExecuteError</tt><tt class="py-op">:</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt id="link-15" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-15', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-name">out_path</tt> <tt class="py-op">+</tt> <tt class="py-string">"/"</tt> <tt class="py-op">+</tt> <tt class="py-name">out_cross_lines_name</tt> <tt class="py-op">+</tt> <tt class="py-string">" already exists. Change "</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">            <tt class="py-string">"output name: "</tt> <tt class="py-op">+</tt> <tt class="py-name">out_path</tt> <tt class="py-op">+</tt> <tt class="py-string">"/"</tt> <tt class="py-op">+</tt>  <tt class="py-name">out_cross_lines_name</tt>  </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">            <tt class="py-op">+</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d%m%y_%H%M%S."</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">            <tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">out_cross_lines_name</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">            <tt class="py-name">out_cross_lines_name</tt> <tt class="py-op">+</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d%m%y_%H%M%S"</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">CreateFeatureclass_management</tt><tt class="py-op">(</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-name">out_path</tt><tt class="py-op">,</tt> <tt class="py-name">out_cross_lines_name</tt><tt class="py-op">,</tt> <tt class="py-name">geometry_type</tt><tt class="py-op">,</tt> <tt class="py-name">template</tt><tt class="py-op">,</tt> <tt class="py-name">has_m</tt><tt class="py-op">,</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">            <tt class="py-name">has_z</tt><tt class="py-op">,</tt> <tt class="py-name">spatial_reference</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">            <tt class="py-op">)</tt>     </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt id="link-16" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-16', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"Output feature class created successfully."</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">    <tt id="link-17" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-17', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Add a field SECTIONID."</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    <tt class="py-name">out_cross_lines</tt> <tt class="py-op">=</tt> <tt class="py-name">workspace</tt> <tt class="py-op">+</tt> <tt class="py-string">"/"</tt> <tt class="py-op">+</tt> <tt class="py-name">out_cross_lines_name</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">    <tt class="py-name">field_name</tt> <tt class="py-op">=</tt> <tt class="py-string">"SECTIONID"</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">    <tt class="py-name">field_type</tt> <tt class="py-op">=</tt> <tt class="py-string">"SHORT"</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">AddField_management</tt><tt class="py-op">(</tt><tt class="py-name">out_cross_lines</tt><tt class="py-op">,</tt> <tt class="py-name">field_name</tt><tt class="py-op">,</tt> <tt class="py-name">field_type</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">    <tt id="link-18" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-18', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"Field SECTIONID added successfully."</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">     </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt id="link-19" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-19', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Add a field INTERMEDIATEID."</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-name">field_name</tt> <tt class="py-op">=</tt> <tt class="py-string">"INTERMEDIATEID"</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">AddField_management</tt><tt class="py-op">(</tt><tt class="py-name">out_cross_lines</tt><tt class="py-op">,</tt> <tt class="py-name">field_name</tt><tt class="py-op">,</tt> <tt class="py-name">field_type</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">    <tt id="link-20" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-20', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"Field INTERMEDIATEID added successfully."</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt id="link-21" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-21', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Sort water land border parts."</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">    <tt class="py-name">sort_fields</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">[</tt><tt class="py-string">"SECTIONID"</tt><tt class="py-op">,</tt> <tt class="py-string">"ASCENDING"</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-string">"WLBID"</tt><tt class="py-op">,</tt> <tt class="py-string">"ASCENDING"</tt><tt class="py-op">]</tt><tt class="py-op">]</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt id="link-22" class="py-name"><a title="other.sort_features
+other.sort_features.sort_features" class="py-name" href="#" onclick="return doclink('link-22', 'sort_features', 'link-9');">sort_features</a></tt><tt class="py-op">(</tt><tt class="py-name">in_wlb</tt><tt class="py-op">,</tt> <tt class="py-name">sort_fields</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">    <tt id="link-23" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-23', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"Sorting water land border parts finished successfully."</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt id="link-24" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-24', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Count cross sections."</tt><tt class="py-op">)</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">    <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">GetCount_management</tt><tt class="py-op">(</tt><tt class="py-name">in_cross_sections</tt><tt class="py-op">)</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">    <tt class="py-name">count_cross_sections</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">result</tt><tt class="py-op">.</tt><tt class="py-name">getOutput</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">    <tt id="link-25" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-25', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"Counting cross sections finished successfully."</tt><tt class="py-op">)</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">    <tt id="link-26" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-26', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Start creating cross lines for each section."</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">    <tt class="py-name">cross_lines</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">    <tt class="py-name">section_ids</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-name">intermediate_ids</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">    <tt class="py-name">points</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-name">point_array</tt> <tt class="py-op">=</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">Array</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">section</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">count_cross_sections</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt id="link-27" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-27', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">            <tt class="py-string">"Get the two water land border parts for section "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">section</tt><tt class="py-op">)</tt>  </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">            <tt class="py-op">+</tt> <tt class="py-string">"."</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">            <tt class="py-op">)</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">field_names</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">"SHAPE@"</tt><tt class="py-op">,</tt> <tt class="py-string">"SHAPE@LENGTH"</tt><tt class="py-op">,</tt> <tt class="py-string">"WLBID"</tt><tt class="py-op">]</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">where_clause</tt> <tt class="py-op">=</tt> <tt class="py-string">"SECTIONID = "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">section</tt><tt class="py-op">)</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-name">wlb_cursor</tt> <tt class="py-op">=</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">da</tt><tt class="py-op">.</tt><tt class="py-name">SearchCursor</tt><tt class="py-op">(</tt><tt class="py-name">in_wlb</tt><tt class="py-op">,</tt> <tt class="py-name">field_names</tt><tt class="py-op">,</tt> <tt class="py-name">where_clause</tt><tt class="py-op">)</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">wlb_row</tt> <tt class="py-keyword">in</tt> <tt class="py-name">wlb_cursor</tt><tt class="py-op">:</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">                <tt class="py-name">wlb1</tt> <tt class="py-op">=</tt> <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">                <tt class="py-name">wlb2</tt> <tt class="py-op">=</tt> <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">     </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt id="link-28" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-28', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Compute length ratio."</tt><tt class="py-op">)</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">ratio</tt> <tt class="py-op">=</tt> <tt class="py-name">wlb1</tt> <tt class="py-op">/</tt> <tt class="py-name">wlb2</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">         </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt id="link-29" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-29', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Determine longer water land border part."</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">wlb1</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">wlb2</tt><tt class="py-op">:</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">            <tt class="py-name">length_wlb</tt> <tt class="py-op">=</tt> <tt class="py-name">wlb1</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">            <tt class="py-name">length_wlb</tt> <tt class="py-op">=</tt> <tt class="py-name">wlb2</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">     </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt id="link-30" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-30', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Reset wlb_cursor."</tt><tt class="py-op">)</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-name">wlb_cursor</tt><tt class="py-op">.</tt><tt class="py-name">reset</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">         </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt id="link-31" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-31', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Append cross section as first cross line to the output."</tt><tt class="py-op">)</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-name">field_names</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">"SHAPE@LENGTH"</tt><tt class="py-op">,</tt> <tt class="py-string">"SHAPE@"</tt><tt class="py-op">]</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt class="py-name">where_clause</tt> <tt class="py-op">=</tt> <tt class="py-string">"SECTIONID = "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">section</tt><tt class="py-op">)</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">        <tt class="py-name">cs_cursor</tt> <tt class="py-op">=</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">da</tt><tt class="py-op">.</tt><tt class="py-name">SearchCursor</tt><tt class="py-op">(</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">            <tt class="py-name">in_cross_sections</tt><tt class="py-op">,</tt> <tt class="py-name">field_names</tt><tt class="py-op">,</tt> <tt class="py-name">where_clause</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">            <tt class="py-op">)</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">cs_row</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cs_cursor</tt><tt class="py-op">:</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">            <tt class="py-name">length_cross_section</tt> <tt class="py-op">=</tt> <tt class="py-name">cs_row</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">            <tt class="py-name">cross_lines</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">cs_row</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">            <tt class="py-name">section_ids</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">section</tt><tt class="py-op">)</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">            <tt class="py-name">intermediate_ids</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">     </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt id="link-32" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-32', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Compute distance between first two cross lines."</tt><tt class="py-op">)</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">element_count_method</tt> <tt class="py-op">==</tt> <tt class="py-string">"FIX"</tt><tt class="py-op">:</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">            <tt class="py-name">element_count</tt> <tt class="py-op">=</tt> <tt id="link-33" class="py-name"><a title="mesh.get_element_count.get_element_count_fix" class="py-name" href="#" onclick="return doclink('link-33', 'get_element_count_fix', 'link-5');">get_element_count_fix</a></tt><tt class="py-op">(</tt><tt class="py-name">length_cross_section</tt><tt class="py-op">)</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">            <tt class="py-name">distance_cross_line</tt> <tt class="py-op">=</tt> <tt class="py-name">length_cross_section</tt> <tt class="py-op">/</tt> <tt class="py-name">element_count</tt> <tt class="py-op">*</tt> <tt class="py-number">3</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-name">element_count_method</tt> <tt class="py-op">==</tt> <tt class="py-string">"VARIABLE"</tt><tt class="py-op">:</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">            <tt class="py-name">ranges</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="mesh.get_element_count.get_ranges" class="py-name" href="#" onclick="return doclink('link-34', 'get_ranges', 'link-7');">get_ranges</a></tt><tt class="py-op">(</tt><tt class="py-name">in_cross_sections</tt><tt class="py-op">)</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">            <tt class="py-name">element_count</tt> <tt class="py-op">=</tt> <tt id="link-35" class="py-name"><a title="mesh.get_element_count.get_element_count_variable" class="py-name" href="#" onclick="return doclink('link-35', 'get_element_count_variable', 'link-6');">get_element_count_variable</a></tt><tt class="py-op">(</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">                <tt class="py-name">length_cross_section</tt><tt class="py-op">,</tt> <tt class="py-name">ranges</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">                <tt class="py-op">)</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">            <tt class="py-name">distance_cross_line</tt> <tt class="py-op">=</tt> <tt class="py-name">length_cross_section</tt> <tt class="py-op">/</tt> <tt class="py-name">element_count</tt> <tt class="py-op">*</tt> <tt class="py-number">3</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">            <tt class="py-name">distance_cross_line</tt> <tt class="py-op">=</tt> <tt class="py-name">distance</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">     </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">        <tt id="link-36" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-36', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Set covered distance to length of the first cross line."</tt><tt class="py-op">)</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">        <tt class="py-name">covered_distance</tt> <tt class="py-op">=</tt> <tt class="py-name">distance_cross_line</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">     </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">        <tt id="link-37" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-37', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">            <tt class="py-string">"Create the further cross lines in section "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">section</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">"."</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">            <tt class="py-op">)</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">        <tt class="py-name">intermediate_id</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">covered_distance</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">length_wlb</tt><tt class="py-op">:</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">element_count_method</tt> <tt class="py-op">==</tt> <tt class="py-string">"FIX"</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">                    <tt class="py-keyword">or</tt> <tt class="py-name">element_count_method</tt> <tt class="py-op">==</tt> <tt class="py-string">"VARIABLE"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">                <tt id="link-38" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-38', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Adjust distance at the end of a section."</tt><tt class="py-op">)</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">                <tt class="py-name">remain_factor</tt> <tt class="py-op">=</tt> <tt class="py-name">remain_percentage</tt> <tt class="py-op">/</tt> <tt class="py-number">100.0</tt>   </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">                <tt class="py-name">remain_distance</tt> <tt class="py-op">=</tt> <tt class="py-name">length_wlb</tt> <tt class="py-op">-</tt> <tt class="py-name">covered_distance</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">                <tt class="py-name">multiplied_distance</tt> <tt class="py-op">=</tt> <tt class="py-name">distance_cross_line</tt> <tt class="py-op">*</tt> <tt class="py-name">remain_factor</tt>     </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">distance_cross_line</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">remain_distance</tt>  </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">                        <tt class="py-keyword">and</tt> <tt class="py-name">multiplied_distance</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">remain_distance</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">                    <tt id="link-39" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-39', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">                        <tt class="py-string">"Break while loop. No further cross line created."</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">                    <tt class="py-keyword">break</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">                <tt class="py-keyword">elif</tt> <tt class="py-op">(</tt><tt class="py-name">distance_cross_line</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">remain_distance</tt>  </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">                        <tt class="py-keyword">and</tt> <tt class="py-name">multiplied_distance</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">remain_distance</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">                    <tt id="link-40" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-40', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">                        <tt class="py-string">"Create cross line halfway of the remain distance."</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">                    <tt class="py-name">covered_distance</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">                    <tt class="py-name">covered_distance</tt> <tt class="py-op">-</tt> <tt class="py-name">distance_cross_line</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">                    <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-name">distance_cross_line</tt><tt class="py-op">+</tt><tt class="py-name">remain_distance</tt><tt class="py-op">)</tt> <tt class="py-op">/</tt> <tt class="py-number">2.0</tt>       </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">                    <tt class="py-op">)</tt>   </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">                 </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">            <tt id="link-41" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-41', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Get start point and end point of the cross line."</tt><tt class="py-op">)</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">wlb_row</tt> <tt class="py-keyword">in</tt> <tt class="py-name">wlb_cursor</tt><tt class="py-op">:</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt> <tt class="py-keyword">and</tt> <tt class="py-name">ratio</tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">                    <tt class="py-name">points</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">                        <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">positionAlongLine</tt><tt class="py-op">(</tt><tt class="py-name">covered_distance</tt><tt class="py-op">)</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">                <tt class="py-keyword">elif</tt> <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt> <tt class="py-keyword">and</tt> <tt class="py-name">ratio</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">                    <tt class="py-name">points</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">                        <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">positionAlongLine</tt><tt class="py-op">(</tt><tt class="py-name">covered_distance</tt> <tt class="py-op">*</tt> <tt class="py-name">ratio</tt><tt class="py-op">)</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">                <tt class="py-keyword">elif</tt> <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-number">2</tt> <tt class="py-keyword">and</tt> <tt class="py-name">ratio</tt> <tt class="py-op">&lt;=</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">                    <tt class="py-name">points</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">                        <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">positionAlongLine</tt><tt class="py-op">(</tt><tt class="py-name">covered_distance</tt><tt class="py-op">)</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line">                <tt class="py-keyword">elif</tt> <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-number">2</tt> <tt class="py-keyword">and</tt> <tt class="py-name">ratio</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">                    <tt class="py-name">points</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">                        <tt class="py-name">wlb_row</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">positionAlongLine</tt><tt class="py-op">(</tt><tt class="py-name">covered_distance</tt> <tt class="py-op">/</tt> <tt class="py-name">ratio</tt><tt class="py-op">)</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">                        <tt class="py-op">)</tt>     </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">         </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">            <tt id="link-42" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-42', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Add start point and end point to a point array."</tt><tt class="py-op">)</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line">            <tt class="py-name">point_array</tt><tt class="py-op">.</tt><tt class="py-name">add</tt><tt class="py-op">(</tt><tt class="py-name">points</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">getPart</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">)</tt>  </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">            <tt class="py-name">point_array</tt><tt class="py-op">.</tt><tt class="py-name">add</tt><tt class="py-op">(</tt><tt class="py-name">points</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">getPart</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">)</tt>  </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line">         </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">            <tt id="link-43" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-43', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Create cross line from start point and end point."</tt><tt class="py-op">)</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">            <tt class="py-name">cross_line</tt> <tt class="py-op">=</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">Polyline</tt><tt class="py-op">(</tt><tt class="py-name">point_array</tt><tt class="py-op">)</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">         </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line">            <tt id="link-44" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-44', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Append cross line to the output."</tt><tt class="py-op">)</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">            <tt class="py-name">cross_lines</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">cross_line</tt><tt class="py-op">)</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">            <tt class="py-name">section_ids</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">section</tt><tt class="py-op">)</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">            <tt class="py-name">intermediate_ids</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">intermediate_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">         </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">element_count_method</tt> <tt class="py-op">==</tt> <tt class="py-string">"FIX"</tt>  </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">                    <tt class="py-keyword">or</tt> <tt class="py-name">element_count_method</tt> <tt class="py-op">==</tt> <tt class="py-string">"VARIABLE"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">                <tt class="py-name">length_cross_line</tt> <tt class="py-op">=</tt> <tt class="py-name">cross_line</tt><tt class="py-op">.</tt><tt class="py-name">getLength</tt><tt class="py-op">(</tt><tt class="py-string">"PLANAR"</tt><tt class="py-op">,</tt> <tt class="py-string">"METERS"</tt><tt class="py-op">)</tt>  </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">element_count_method</tt> <tt class="py-op">==</tt> <tt class="py-string">"FIX"</tt><tt class="py-op">:</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line">                    <tt id="link-45" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-45', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line">                        <tt class="py-string">"Compute the distance to the next cross line with "</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">                        <tt class="py-string">"'get_element_count_fix'."</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">                    <tt class="py-name">element_count</tt> <tt class="py-op">=</tt> <tt id="link-46" class="py-name"><a title="mesh.get_element_count.get_element_count_fix" class="py-name" href="#" onclick="return doclink('link-46', 'get_element_count_fix', 'link-5');">get_element_count_fix</a></tt><tt class="py-op">(</tt><tt class="py-name">length_cross_line</tt><tt class="py-op">)</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line">                <tt class="py-keyword">elif</tt> <tt class="py-name">element_count_method</tt> <tt class="py-op">==</tt> <tt class="py-string">"VARIABLE"</tt><tt class="py-op">:</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line">                    <tt id="link-47" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-47', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line">                        <tt class="py-string">"Compute the distance to the next cross line with "</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line">                        <tt class="py-string">" 'get_element_count_variable'."</tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">                    <tt class="py-name">element_count</tt> <tt class="py-op">=</tt> <tt id="link-48" class="py-name"><a title="mesh.get_element_count.get_element_count_variable" class="py-name" href="#" onclick="return doclink('link-48', 'get_element_count_variable', 'link-6');">get_element_count_variable</a></tt><tt class="py-op">(</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">                        <tt class="py-name">length_cross_line</tt><tt class="py-op">,</tt> <tt class="py-name">ranges</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line">                <tt class="py-name">distance_cross_line</tt> <tt class="py-op">=</tt> <tt class="py-name">length_cross_section</tt> <tt class="py-op">/</tt> <tt class="py-name">element_count</tt> <tt class="py-op">*</tt> <tt class="py-number">3</tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">         </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">            <tt id="link-49" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-49', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Remove all points from 'points' and 'point_array'."</tt><tt class="py-op">)</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line">            <tt class="py-keyword">del</tt> <tt class="py-name">points</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">            <tt class="py-name">point_array</tt><tt class="py-op">.</tt><tt class="py-name">removeAll</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line">             </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line">            <tt id="link-50" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-50', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Reset wlb_cursor."</tt><tt class="py-op">)</tt> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line">            <tt class="py-name">wlb_cursor</tt><tt class="py-op">.</tt><tt class="py-name">reset</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">         </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line">            <tt id="link-51" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-51', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Set covered distance for the next iteration."</tt><tt class="py-op">)</tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line">            <tt class="py-name">covered_distance</tt> <tt class="py-op">=</tt> <tt class="py-name">covered_distance</tt> <tt class="py-op">+</tt> <tt class="py-name">distance_cross_line</tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">            <tt class="py-name">intermediate_id</tt> <tt class="py-op">=</tt> <tt class="py-name">intermediate_id</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt>   </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line"> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">        <tt id="link-52" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-52', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Section "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">section</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-string">" completed."</tt><tt class="py-op">)</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line">    </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">    <tt id="link-53" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-53', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Add last cross line (last cross section) to the output."</tt><tt class="py-op">)</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">    <tt class="py-name">field_names</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">"SHAPE@"</tt><tt class="py-op">]</tt> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line">    <tt class="py-name">where_clause</tt> <tt class="py-op">=</tt> <tt class="py-string">"SECTIONID = "</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">count_cross_sections</tt><tt class="py-op">)</tt>  </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line">    <tt class="py-name">cs_cursor</tt> <tt class="py-op">=</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">da</tt><tt class="py-op">.</tt><tt class="py-name">SearchCursor</tt><tt class="py-op">(</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line">        <tt class="py-name">in_cross_sections</tt><tt class="py-op">,</tt> <tt class="py-name">field_names</tt><tt class="py-op">,</tt> <tt class="py-name">where_clause</tt> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">        <tt class="py-op">)</tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">cs_row</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cs_cursor</tt><tt class="py-op">:</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line">        <tt class="py-name">cross_lines</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">cs_row</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line">        <tt class="py-name">section_ids</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">count_cross_sections</tt><tt class="py-op">)</tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line">        <tt class="py-name">intermediate_ids</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line"> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line">    <tt id="link-54" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-54', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"Insert cross lines to the output feature class."</tt><tt class="py-op">)</tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line">    <tt class="py-name">field_names</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">"SHAPE@"</tt><tt class="py-op">,</tt> <tt class="py-string">"SECTIONID"</tt><tt class="py-op">,</tt> <tt class="py-string">"INTERMEDIATEID"</tt><tt class="py-op">]</tt> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line">    <tt class="py-keyword">with</tt> <tt class="py-name">arcpy</tt><tt class="py-op">.</tt><tt class="py-name">da</tt><tt class="py-op">.</tt><tt class="py-name">InsertCursor</tt><tt class="py-op">(</tt><tt class="py-name">out_cross_lines</tt><tt class="py-op">,</tt> <tt class="py-name">field_names</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">cursor</tt><tt class="py-op">:</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">cross_lines</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line">            <tt class="py-name">cursor</tt><tt class="py-op">.</tt><tt class="py-name">insertRow</tt><tt class="py-op">(</tt> </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-name">cross_lines</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">section_ids</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">intermediate_ids</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line">                <tt class="py-op">)</tt> </tt>
+<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line">    <tt id="link-55" class="py-name"><a title="Flussschlauchgenerator.logger
+dtmw.create_cross_lines.logger
+dtmw.create_dtmw.logger
+dtmw.create_longitudinal_sections.logger
+dtmw.interpolate_longitudinal_sections.logger
+export.create_tin.logger
+export.export_features.logger
+mesh.check_channel_mesh_elements.logger
+mesh.create_channel_mesh_elements.logger
+mesh.create_vertices.logger
+mesh.get_element_count.logger
+other.convert_spatial_reference.logger
+other.list_field_names.logger
+other.overwrite_output_settings.logger
+other.sort_features.logger
+preparation.bound_features_to_investigated_area.logger
+preparation.connect_cross_sections.logger
+preparation.create_stream_center_line.logger
+preparation.create_stream_polygon.logger
+preparation.flip_line.logger
+preparation.load_points.logger
+preparation.subdivide_water_land_border.logger" class="py-name" href="#" onclick="return doclink('link-55', 'logger', 'link-11');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt> </tt>
+<a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line">        <tt class="py-string">"Cross lines inserted successfully to the output feature class."</tt> </tt>
+<a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line">        <tt class="py-op">)</tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line">     </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">out_cross_lines</tt> </tt>
+</div><a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Aug 21 14:25:40 2017
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
