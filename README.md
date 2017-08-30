@@ -11,3 +11,4 @@ Please find information for contributing to the project in the separate [CONTRIB
 If you encounter any issues with the software or if you would like to see certain functionality added, let us know at:
 - Matthias Hensen (matthias.hensen@hs-bochum.de)
 - Benno Schmidt (benno.schmidt@hs-bochum.de)
+
