@@ -1,5 +1,9 @@
 # ChannelMeshGenerator
-The ChannelMeshGenerator (German: "Flussschlauch-Generator") is an ArcGIS-based software tool to generate channel meshes for rivers from cross-sections, water-land borderlines and digital terrain models).
+The ChannelMeshGenerator (German: "Flussnetzgenerator") is an ArcGIS-based software tool to generate channel meshes for rivers from cross-sections, water-land borderlines and digital terrain models).
+
+## Documentation 
+Documentation can be found in the project's sub-folder $ChannelMeshGenerator_HOME/doc. 
+Moreover, we recommend to browse through Matthias Hensen's Master thesis which is avaliable as PDF document under https://www.hochschule-bochum.de/fileadmin/media/fb_v/prof_schmidt/Masterarbeit_Hensen.pdf
 
 ## License information
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU GENERAL PUBLIC LICENSE Version 3. For further information please refer to [LICENSE](LICENSE)-file
